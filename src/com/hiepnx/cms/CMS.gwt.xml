@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- When updating your version of GWT, you should also update this DTD reference, 
+	so that your app can take advantage of the latest GWT module capabilities. -->
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.8.2//EN"
+  "http://www.gwtproject.org/doctype/2.8.2/gwt-module.dtd">
+<module rename-to='cms'>
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.json.JSON" />
+	<!-- Other module inherits -->
+	<inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+	<inherits name="org.gwtbootstrap3.extras.notify.Notify"/>
+	<inherits name="org.gwtbootstrap3.extras.bootbox.Bootbox"/>
+	<inherits name="org.gwtbootstrap3.extras.datepicker.DatePicker"/>
+	<inherits name="org.gwtbootstrap3.extras.datetimepicker.DateTimePicker"/>
+	<inherits name="org.gwtbootstrap3.extras.fullcalendar.FullCalendar"/>
+	<inherits name="org.gwtbootstrap3.extras.select.Select"/>
+	<inherits name="org.gwtbootstrap3.extras.summernote.Summernote"/>
+	
+	<!-- Specify the app entry point class. -->
+	<entry-point class='com.hiepnx.cms.client.CMS' />
+
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+
+	<!-- allow Super Dev Mode -->
+	<add-linker name="xsiframe" />
+</module>

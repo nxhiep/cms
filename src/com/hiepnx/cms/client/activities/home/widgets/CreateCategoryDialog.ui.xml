@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	>
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel styleName="form-data row">
+		<div class="item col-xs-12 col-sm-6">
+			<label>Tên</label>
+			<b:TextBox ui:field="nameBox"></b:TextBox>
+		</div>
+<!-- 		<div class="item col-xs-12 col-sm-6"> -->
+<!-- 			<label>Loại</label> -->
+<!-- 			<b:ListBox ui:field="typeListbox"></b:ListBox> -->
+<!-- 		</div> -->
+		<div class="item col-xs-12 col-sm-6">
+			<label>Trạng thái</label>
+			<b:ListBox ui:field="statusListBox"></b:ListBox>
+		</div>
+		<div class="item col-xs-12">
+			<label>Mô tả</label>
+			<b:TextArea ui:field="descriptionBox"></b:TextArea>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

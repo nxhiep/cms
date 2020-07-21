@@ -1,0 +1,58 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#content {
+	width: 100%;
+	height: 100%;
+}
+.basic-page {
+	width: 100%;
+	height: 100%;
+}
+.header-panel {
+	height: 60px;
+	width: 100%;
+	background: #ddd;
+}
+.body-panel {
+	height: calc(100% - 60px);
+	width: 100%;
+}
+.container.flex {
+	height: 100%;
+}
+.container.flex:before,
+.container.flex:after {
+	content: none;
+}
+.user-info-panel {
+	margin-left: 7px;
+}
+.user-info-panel .user-name {
+	font-weight: 500
+}
+.user-info-panel .user-email {
+	font-style: italic;
+}
+.header-search-box-panel input {
+	border-radius: 30px;
+	min-width: 200px
+}
+.user-panel .dropdown-menu .item {
+    width: 100%;
+    display: block;
+    padding: 7px;
+}
+.tabs-panel {
+	padding-top: 10px;
+}
+
+.dropdown-menu .dropdown-item {
+	width: 100%;
+	display: block;
+	border: none;
+	background: white;
+	padding: 7px 10px;
+}
