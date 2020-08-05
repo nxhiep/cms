@@ -20,7 +20,7 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper {
 			if(params.containsKey(CategoryPlace.PARAM_ID)) {
 				id = Long.parseLong(params.get(CategoryPlace.PARAM_ID));
 			}
-			return new CategoryPlace(id, params.get(CategoryPlace.PARAM_NAME));
+			return new CategoryPlace(id);
 		}
 		return new HomePlace();
 	}

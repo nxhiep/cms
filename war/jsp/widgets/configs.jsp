@@ -14,5 +14,6 @@ var Config = {
 	LOGIN_MOBILE_IS_USED:			<%=Config.LOGIN_MOBILE_IS_USED%>,
 	COOKIE_SESSION_KEY:				'<%=CookieUtils.COOKIE_SESSION_KEY%>',
 	EXPIRED_TIME_LOGIN:				<%=CookieUtils.EXPIRED_TIME_LOGIN%>,
+	BUCKET_NAME: 					'<%=Config.BUCKET_NAME%>'
 }
 </script>

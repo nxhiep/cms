@@ -27,6 +27,9 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtbootstrap3-0.9.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.9.64.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtbootstrap3-extras-0.9.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.moxieapps.gwt.uploader-1.1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-gcs-client-0.4.3.jar"/>
 	<classpathentry kind="con" path="com.google.cloud.tools.eclipse.appengine.libraries/master-container">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

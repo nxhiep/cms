@@ -71,6 +71,10 @@ public class BasicViewImpl extends Composite implements BasicView {
 		this.eventBus = eventBus;
 	}
 	
+	public EventBus getEventBus() {
+		return eventBus;
+	}
+	
 	@Override
 	public HeaderPanel getHeaderPanel() {
 		return basicLayout.getHeaderPanel();

@@ -2,26 +2,27 @@ package com.hiepnx.cms.client.activities.category;
 
 import com.hiepnx.cms.client.activities.basic.BasicPlace;
 import com.hiepnx.cms.shared.PlaceToken;
+import com.hiepnx.cms.shared.model.Category;
 
 public class CategoryPlace extends BasicPlace {
 	
 	public static final String PARAM_ID = "id";
-	public static final String PARAM_NAME = "name";
 	private Long id;
-	private String name;
+	private Category category;
 	
 	public CategoryPlace() {
 		super(PlaceToken.CATEGORY_PLACE);
 	}
 	
 	public CategoryPlace(Long id) {
-		this(id, null);
+		super(PlaceToken.CATEGORY_PLACE + "?"+PARAM_ID+"=" + id);
+		setId(id);
 	}
 	
-	public CategoryPlace(Long id, String name) {
-		super(PlaceToken.CATEGORY_PLACE + "?"+PARAM_ID+"=" + id + (name != null && !name.isEmpty() ? "&" + PARAM_NAME + "=" + name : ""));
+	public CategoryPlace(Category category) {
+		super(PlaceToken.CATEGORY_PLACE + "?"+PARAM_ID+"=" + category.getId());
 		setId(id);
-		setName(name);
+		setCategory(category);
 	}
 	
 	public void setId(Long id) {
@@ -32,11 +33,11 @@ public class CategoryPlace extends BasicPlace {
 		return id;
 	}
 	
-	public String getName() {
-		return name;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public Category getCategory() {
+		return category;
 	}
 }

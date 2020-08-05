@@ -60,4 +60,29 @@ public class DataServiceImpl extends CustomRemoteServiceServlet implements DataS
 	public List<Card> getCardsByParentId(Long parentId) {
 		return CARD_DAO.getCardsByParentId(parentId);
 	}
+
+	@Override
+	public Category getCategoryById(Long categoryId) {
+		return CATEGORY_DAO.getCategoryById(categoryId);
+	}
+
+	@Override
+	public int countCardsByParentId(Long categoryId) {
+		return CARD_DAO.countCardsByParentId(categoryId);
+	}
+	
+	@Override
+	public List<Card> getCardsByParentId(Long categoryId, int offset, int limit) {
+		return CARD_DAO.getCardsByParentId(categoryId, offset, limit);
+	}
+
+	@Override
+	public void deleteCard(Card card) {
+		CARD_DAO.deleteCard(card);
+	}
+
+	@Override
+	public Card saveCard(Card card) {
+		return CARD_DAO.saveCard(card);
+	}
 }

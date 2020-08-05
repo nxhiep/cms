@@ -6,9 +6,12 @@
 	<ui:style>
 	</ui:style>
 	<g:HTMLPanel ui:field="mainPanel" styleName="home-page">
-		<div class="header-content-panel">
+		<div class="header-content-panel flex flex-ai-center">
 			<b:TextBox ui:field="searchBox" placeholder="Tìm kiếm"></b:TextBox>
+			<div style="width:10px"></div>
+			<b:Button ui:field="buttonCreateCategory" text="Create Category"></b:Button>
 		</div>
+		<hr />
 		<g:FlowPanel ui:field="contentPanel"></g:FlowPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

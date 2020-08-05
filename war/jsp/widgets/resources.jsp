@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/scss/index.css">
 <link rel="stylesheet" type="text/css" href="/resources/scss/login.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/gwt.css">
+<link rel="stylesheet" type="text/css" href="/resources/scss/gwt.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-theme.min.css">
 

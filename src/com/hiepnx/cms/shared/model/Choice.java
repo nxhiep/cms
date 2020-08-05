@@ -11,7 +11,7 @@ public class Choice implements IBasic {
 
 	@Ignore private static final long serialVersionUID = 1L;
 	@Id private Long id;
-	@Index private Long parentId = Config.LONG_NULL; // cardId
+	@Index private Long parentId = Config.NULL_ID; // cardId
 	@Index private int status = Config.STATUS_PUBLIC;
 	private boolean correct = false;
 	

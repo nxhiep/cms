@@ -15,9 +15,9 @@ public class DAO {
 	public IBasic save(IBasic iBasic) {
 		long currentTime = new Date().getTime();
 		Object id = iBasic.getId();
-		boolean checkNewObject = (id instanceof Long && (Long) id > Config.LONG_NULL) 
-				|| (id instanceof Integer && (Integer) id > Config.INT_NULL)
-				|| (id instanceof Double && (Double) id > Config.LONG_NULL);
+		boolean checkNewObject = (id instanceof Long && (Long) id == Config.NULL_ID) 
+				|| (id instanceof Integer && (Integer) id == Config.INT_NULL)
+				|| (id instanceof Double && (Double) id == Config.NULL_ID);
 		if(id == null || checkNewObject) {
 			iBasic.setCreateDate(currentTime);
 		}
@@ -30,9 +30,9 @@ public class DAO {
 		long currentTime = new Date().getTime();
 		for (IBasic iBasic : iBasics) {
 			Object id = iBasic.getId();
-			boolean checkNewObject = (id instanceof Long && (Long) id > Config.LONG_NULL) 
-				|| (id instanceof Integer && (Integer) id > Config.INT_NULL)
-				|| (id instanceof Double && (Double) id > Config.LONG_NULL);
+			boolean checkNewObject = (id instanceof Long && (Long) id == Config.NULL_ID) 
+				|| (id instanceof Integer && (Integer) id == Config.INT_NULL)
+				|| (id instanceof Double && (Double) id == Config.NULL_ID);
 			if(id == null || checkNewObject) {
 				iBasic.setCreateDate(currentTime);
 			}

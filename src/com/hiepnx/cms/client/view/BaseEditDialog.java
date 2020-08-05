@@ -20,7 +20,11 @@ public class BaseEditDialog extends MyDialog {
 		this.iBasic = iBasic;
 	}
 	
-	public IBasic getCaterory() {
+	protected IBasic getIBasic() {
 		return iBasic;
+	}
+	
+	protected boolean isValidated() {
+		return false;
 	}
 }

@@ -30,18 +30,18 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 	
 	@UiField TextBox searchBox;
 	@UiField FlowPanel contentPanel;
+	@UiField Button buttonCreateCategory;
 	private TreePanel treePanel = new TreePanel(new TreeOptions(true));
 	private CreateCategoryDialog createCategoryDialog;
-	private Button buttonCreateCategory = new Button("Create Category");
 	
 	public HomeViewImpl() {
 		super();
 		setView(uiBinder.createAndBindUi(this));
 		contentPanel.clear();
-		contentPanel.add(buttonCreateCategory);
 		contentPanel.add(treePanel);
 		buttonCreateCategory.setIcon(IconType.PLUS);
-		buttonCreateCategory.setType(ButtonType.PRIMARY);
+		buttonCreateCategory.setType(ButtonType.SUCCESS);
+		searchBox.setWidth("300px");
 	}
 	
 	@Override

@@ -16,6 +16,16 @@
     <url-pattern>/cms/api</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>com.hiepnx.cms.server.upload.FileUploadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/file-upload</url-pattern>
+  </servlet-mapping>
+  
 <!--   Spring Configuation -->
   <servlet>
 		<servlet-name>mvc-dispatcher</servlet-name>

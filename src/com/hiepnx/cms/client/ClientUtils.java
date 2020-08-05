@@ -28,7 +28,7 @@ public class ClientUtils {
 	}
 	
 	public static String formatDate(Long time, String patternFormat) {
-		if (time == null || time <= Config.LONG_NULL)
+		if (time == null || time <= Config.NULL_ID)
 			return "-";
 		if(patternFormat == null) {
 			patternFormat = Config.DATE_FORMAT_DATE;

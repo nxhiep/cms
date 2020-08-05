@@ -17,6 +17,8 @@
 	<inherits name="org.gwtbootstrap3.extras.select.Select"/>
 	<inherits name="org.gwtbootstrap3.extras.summernote.Summernote"/>
 	
+	<inherits name="org.moxieapps.gwt.uploader.Uploader"/>
+	
 	<!-- Specify the app entry point class. -->
 	<entry-point class='com.hiepnx.cms.client.CMS' />
 
@@ -26,4 +28,6 @@
 
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
+	
+	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
 </module>

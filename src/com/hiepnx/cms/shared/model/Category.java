@@ -18,7 +18,7 @@ public class Category implements IBasic {
 	private String description = Config.TEXT_EMPTY;
 	@Index private int index = Config.INT_NULL;
 	@Index private int type = Config.INT_NULL;
-	@Index private Long parentId = Config.LONG_NULL;
+	@Index private Long parentId = Config.NULL_ID;
 	@Index private int status = Config.STATUS_PUBLIC;
 	
 	@Index private Long lastUpdate;

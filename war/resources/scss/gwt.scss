@@ -1,0 +1,98 @@
+.root-tree-panel {
+	.tree-item {
+		border-bottom: 1px solid #ddd;
+		.title-panel {
+		padding: 5px;
+		}
+		.tree-name {
+		cursor: pointer;
+		}
+		
+		button[data-toggle="collapse"] {
+			border: none;
+    		background: transparent;
+		}
+		
+		.collapse,
+		.collapsing {
+			padding-left: 20px;
+		}
+		button[data-toggle="dropdown"] {
+		border: none;
+		background: none;
+		}
+	}
+	.tree-item:last-child {
+	border-bottom: none;
+	}
+}
+
+.home-page {
+	.header-content-panel {
+	padding: 10px 0;
+	}
+	
+	.dropdown-menu {
+		> div {
+			border-bottom: 1px solid #ddd;
+		    padding: 5px;
+			a {
+				display: block;
+				text-decoration: none;
+				color: #333;
+			}
+		}
+		> div:hover {
+		 background: #ddd;
+		}
+		> div:last-child {
+		border-bottom: none;
+		}
+	}
+}
+.create-card-dialog {
+	.item {
+	margin-bottom: 10px;
+	}
+}
+.upload-panel {
+    display: inline-flex;
+    align-items: center;
+    
+    .loading-html {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    }
+}
+.loading-widget {
+	.loading-panel {
+		position: relative;
+		border-radius: 10px;
+	}
+	.loading-title {
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
+}
+
+.choices-panel {
+	.choice-item {
+	    border: 1px solid #ddd;
+	    padding: 10px 0;
+	    margin-bottom: 10px;
+	    display: inline-block;
+	    width: 100%;
+		border-radius: 3px;
+	}
+}
+.div-anchor {
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+}
+.div-anchor:hover {
+	color: #23527c;
+    text-decoration: underline;
+}

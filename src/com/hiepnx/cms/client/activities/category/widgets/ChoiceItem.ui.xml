@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:v="urn:import:com.hiepnx.cms.client.view"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	>
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel styleName="row">
+		<div class="col-xs-12 item flex flex-ai-center">
+			<label>Correct answer:&nbsp;&nbsp;&nbsp;</label>
+			<b:CheckBox ui:field="correctAnswerCheckBox"></b:CheckBox>
+			<b:Button ui:field="buttonClose"></b:Button>
+		</div>
+		<div class="col-xs-12 item">
+			<div><label>Front Text: </label></div>
+			<v:MyEditor ui:field="frontText"></v:MyEditor>
+		</div>
+		<div class="col-xs-12 item">
+			<div><label>Front Hint: </label></div>
+			<v:MyEditor ui:field="frontHint"></v:MyEditor>
+		</div>
+		<div class="col-xs-12 item">
+			<div><label>Front Image: </label></div>
+			<div class="flex">
+				<v:UploaderPanel ui:field="frontImageUploader"></v:UploaderPanel>
+				<g:FlowPanel ui:field="imagesPanel"></g:FlowPanel>
+			</div>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

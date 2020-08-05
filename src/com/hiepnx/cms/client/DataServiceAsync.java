@@ -26,4 +26,14 @@ public interface DataServiceAsync {
 
 	void getCardsByParentId(Long parentId, AsyncCallback<List<Card>> callback);
 
+	void getCategoryById(Long categoryId, AsyncCallback<Category> callback);
+
+	void countCardsByParentId(Long categoryId, AsyncCallback<Integer> callback);
+
+	void getCardsByParentId(Long categoryId, int offset, int limit, AsyncCallback<List<Card>> callback);
+
+	void saveCard(Card card, AsyncCallback<Card> callback);
+
+	void deleteCard(Card card, AsyncCallback<Void> callback);
+
 }

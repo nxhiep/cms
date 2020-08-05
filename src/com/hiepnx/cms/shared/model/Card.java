@@ -17,7 +17,7 @@ public class Card implements IBasic {
 	@Index private int index = Config.INT_NULL;
 	@Index private int difficultyLevel = Config.INT_NULL;
 	@Index private int type = Config.INT_NULL;
-	@Index private Long parentId = Config.LONG_NULL;
+	@Index private Long parentId = Config.NULL_ID;
 	@Index private int status = Config.STATUS_PUBLIC;
 	@Index private String code = Config.TEXT_EMPTY;
 	
@@ -39,7 +39,7 @@ public class Card implements IBasic {
 	@Index private Long createDate;
 	
 	@Ignore private List<Card> childCards =new ArrayList<Card>();
-	@Ignore private List<Choice> choices =new ArrayList<Choice>();
+	@Ignore private ArrayList<Choice> choices =new ArrayList<Choice>();
 	
 	public Card() {}
 	
@@ -214,11 +214,17 @@ public class Card implements IBasic {
 		this.childCards = childCards;
 	}
 	
-	public List<Choice> getChoices() {
+	public ArrayList<Choice> getChoices() {
 		return choices;
 	}
 	
-	public void setChoices(List<Choice> choices) {
+	public void setChoices(ArrayList<Choice> choices) {
+		choiceIds = new ArrayList<Long>();
+		for (Choice choice : choices) {
+			if(choice != null && choice.getId() != null && choice.getId() > Config.NULL_ID) {
+				choiceIds.add(choice.getId());
+			}
+		}
 		this.choices = choices;
 	}
 }

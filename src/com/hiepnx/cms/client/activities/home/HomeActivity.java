@@ -11,14 +11,15 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.hiepnx.cms.client.ClientData;
+import com.hiepnx.cms.client.RPCCall;
 import com.hiepnx.cms.client.activities.ClientFactory;
 import com.hiepnx.cms.client.activities.basic.BasicActivity;
+import com.hiepnx.cms.client.activities.category.CategoryPlace;
 import com.hiepnx.cms.client.activities.home.widgets.CreateCategoryDialog;
 import com.hiepnx.cms.client.event.ActionEvent;
 import com.hiepnx.cms.client.event.ActionEvent.Action;
 import com.hiepnx.cms.client.event.ActionEventHandler;
 import com.hiepnx.cms.client.view.MyDialog;
-import com.hiepnx.cms.client.view.Toaster;
 import com.hiepnx.cms.shared.Callback;
 import com.hiepnx.cms.shared.Config;
 import com.hiepnx.cms.shared.model.Category;
@@ -65,6 +66,8 @@ public class HomeActivity extends BasicActivity {
 						createAndUpdateCategory(category, category.getId());
 					} else if(Action.DELETE.equals(event.getAction())) {
 						deleteCategory(category);
+					} else if(Action.VIEW.equals(event.getAction())) {
+						goTo(new CategoryPlace(category));
 					}
 				}
 			}
@@ -103,7 +106,7 @@ public class HomeActivity extends BasicActivity {
 			@Override
 			public void onCallback(Boolean object) {
 				if(object) {
-					ClientData.DATA_SERVICE.delete(category, new AsyncCallback<Void>() {
+					ClientData.delete(category, new AsyncCallback<Void>() {
 						
 						@Override
 						public void onSuccess(Void arg0) {}
@@ -118,7 +121,12 @@ public class HomeActivity extends BasicActivity {
 	}
 	
 	private void loadCategories() {
-		ClientData.DATA_SERVICE.getCategoriesByParentId(Config.NULL_ID, new AsyncCallback<List<Category>>() {
+		new RPCCall<List<Category>>() {
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				view.show(null);
+			}
 
 			@Override
 			public void onSuccess(List<Category> arg0) {
@@ -131,20 +139,19 @@ public class HomeActivity extends BasicActivity {
 				});
 				view.show(arg0);
 			}
-			
+
 			@Override
-			public void onFailure(Throwable arg0) {
-				view.show(null);
+			protected void callService(AsyncCallback<List<Category>> callback) {
+				ClientData.DATA_SERVICE.getCategoriesByParentId(Config.NULL_ID, callback);
 			}
-		});
+		}.retry(0, true);
 	}
 
 	private void updateCategory(Category category) {
-		ClientData.DATA_SERVICE.save(category, new AsyncCallback<IBasic>() {
+		ClientData.save(category, new AsyncCallback<IBasic>() {
 			
 			@Override
 			public void onSuccess(IBasic arg0) {
-				Toaster.showSuccess("Updated!");
 				loadCategories();
 			}
 			

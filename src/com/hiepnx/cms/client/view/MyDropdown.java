@@ -2,15 +2,14 @@ package com.hiepnx.cms.client.view;
 
 import java.util.List;
 
-import org.gwtbootstrap3.client.ui.Anchor;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.hiepnx.cms.shared.Callback;
 
 public class MyDropdown extends FlowPanel {
@@ -30,25 +29,26 @@ public class MyDropdown extends FlowPanel {
 
 	public MyDropdown() {
 		this.setStyleName("dropdown");
-		button.setType(ButtonType.PRIMARY);
-		button.setDataToggle(Toggle.DROPDOWN);
+		button.setStyleName("button-menu-dropdown dropdown-toggle");
+		button.getElement().setAttribute("data-toggle", Toggle.DROPDOWN.getToggle());
 		this.add(button);
 	}
 	
 	public MyDropdown(IconType iconType, List<String> childs, Callback<Integer> callback) {
 		this();
 		this.callback = callback;
-		button.setIcon(iconType);
+		button.setHTML("<i class=\"fa "+iconType.getCssName()+"\"></i>");
 		setChilds(childs);
 	}
 	
 	private void setChilds(List<String> childs) {
 		FlowPanel flowPanel = new FlowPanel();
-		flowPanel.setStyleName("dropdown-menu");
+		flowPanel.setStyleName("dropdown-menu dropdown-menu-right");
 		for (String item : childs) {
 			FlowPanel element = new FlowPanel();
 			flowPanel.add(element);
-			Anchor anchor = new Anchor(item, "#");
+			HTML anchor = new HTML(item);
+			anchor.setStyleName("div-anchor");
 			element.add(anchor);
 			anchor.addClickHandler(new ClickHandler() {
 				

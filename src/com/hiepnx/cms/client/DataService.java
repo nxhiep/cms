@@ -27,4 +27,14 @@ public interface DataService extends RemoteService {
 	List<Category> getCategoriesByParentId(Long parentId);
 
 	List<Card> getCardsByParentId(Long parentId);
+
+	Category getCategoryById(Long categoryId);
+
+	int countCardsByParentId(Long categoryId);
+
+	List<Card> getCardsByParentId(Long categoryId, int offset, int limit);
+
+	void deleteCard(Card card);
+
+	Card saveCard(Card card);
 }
