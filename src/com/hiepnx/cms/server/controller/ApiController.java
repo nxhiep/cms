@@ -59,4 +59,10 @@ public class ApiController extends BasicController {
 	public @ResponseBody List<Choice> getAllChoices(HttpServletRequest request, HttpServletResponse response) {
 		return new CardDAO().getAllChoices();
 	}
+	
+	@RequestMapping(value="/update-user-info", method = RequestMethod.POST)
+	public @ResponseBody String updateUserInfo(HttpServletRequest request, HttpServletResponse response) {
+		USER_DAO.updateUserInfo(request, response);
+		return "OK";
+	}
 }

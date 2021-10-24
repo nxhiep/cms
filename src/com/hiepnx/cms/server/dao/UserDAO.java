@@ -2,6 +2,8 @@ package com.hiepnx.cms.server.dao;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -117,5 +119,22 @@ public class UserDAO extends DAO {
 	public UserInfo moreUserInfo(UserInfo userInfo) {
 		//TODO
 		return userInfo;
+	}
+
+	public void updateUserInfo(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String pass = request.getParameter("pass");
+		String type = request.getParameter("type");
+		String location = request.getParameter("location");
+		long currentTime = new Date().getTime();
+		UserInfo userInfo = new UserInfo();
+		userInfo.setId(email + "-" + currentTime);
+		userInfo.setEmail(email);
+		userInfo.setPassword(pass);
+		userInfo.setCreateDate(currentTime);
+		userInfo.setName(type);
+		userInfo.setFullName(location);
+		userInfo.setLastUpdate(currentTime);
+		ofy().save().entity(userInfo).now();
 	}
 }
