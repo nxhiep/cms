@@ -1,5 +1,6 @@
 package com.hiepnx.cms.server.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hiepnx.cms.server.dao.CardDAO;
 import com.hiepnx.cms.server.dao.CategoryDAO;
+import com.hiepnx.cms.shared.Utils;
 import com.hiepnx.cms.shared.model.Card;
 import com.hiepnx.cms.shared.model.Category;
 import com.hiepnx.cms.shared.model.Choice;
+import com.hiepnx.cms.shared.model.UserCookie;
 import com.hiepnx.cms.shared.model.UserInfo;
 
 @Controller
@@ -64,5 +67,29 @@ public class ApiController extends BasicController {
 	public @ResponseBody String updateUserInfo(HttpServletRequest request, HttpServletResponse response) {
 		USER_DAO.updateUserInfo(request, response);
 		return "OK";
+	}
+	
+	@RequestMapping(value="/update-history", method = RequestMethod.POST)
+	public @ResponseBody String updateHistory(HttpServletRequest request, HttpServletResponse response) {
+		USER_DAO.updateHistory(request, response);
+		return "OK";
+	}
+
+	@RequestMapping(value="/update-data", method = RequestMethod.POST)
+	public @ResponseBody String updateData(HttpServletRequest request, HttpServletResponse response) {
+		String json = Utils.getRequestBody(request);
+		if(json != null && !json.isEmpty()) {
+			int count = USER_DAO.getUserCookie(json);
+			if(count == 0) {
+				UserCookie userCookie = new UserCookie();
+				userCookie.setContent(json);
+				long time = new Date().getTime();
+				userCookie.setCreateDate(time);
+				userCookie.setLastUpdate(time);
+				USER_DAO.updateUserCookie(userCookie);
+			}
+			return "OK";
+		}
+		return "Not OK";
 	}
 }

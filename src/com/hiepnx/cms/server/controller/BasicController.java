@@ -1,5 +1,7 @@
 package com.hiepnx.cms.server.controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,7 @@ import com.hiepnx.cms.shared.model.UserInfo;
 
 public class BasicController {
 	protected UserDAO USER_DAO = new UserDAO();
+	protected final Logger log = Logger.getLogger(BasicController.class.getName());
 	
 	protected UserInfo getCurrentUserInfoBySession(Model model, HttpServletResponse response, HttpServletRequest request) {
 		UserInfo currentUser = USER_DAO.loginFromSession(request, response);

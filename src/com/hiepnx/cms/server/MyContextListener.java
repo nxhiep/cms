@@ -9,6 +9,8 @@ import com.hiepnx.cms.shared.model.CardProgress;
 import com.hiepnx.cms.shared.model.Category;
 import com.hiepnx.cms.shared.model.CategoryProgress;
 import com.hiepnx.cms.shared.model.Choice;
+import com.hiepnx.cms.shared.model.PageHistory;
+import com.hiepnx.cms.shared.model.UserCookie;
 import com.hiepnx.cms.shared.model.UserInfo;
 
 public class MyContextListener implements ServletContextListener {
@@ -25,5 +27,7 @@ public class MyContextListener implements ServletContextListener {
 		ObjectifyService.register(Category.class);
 		ObjectifyService.register(CategoryProgress.class);
 		ObjectifyService.register(UserInfo.class);
+		ObjectifyService.register(PageHistory.class);
+		ObjectifyService.register(UserCookie.class);
 	}
 }
