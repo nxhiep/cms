@@ -1,6 +1,5 @@
 package com.hiepnx.cms.server.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.hiepnx.cms.server.UrlFetcher;
 import com.hiepnx.cms.server.dao.CardDAO;
 import com.hiepnx.cms.server.dao.CategoryDAO;
 import com.hiepnx.cms.shared.Utils;
 import com.hiepnx.cms.shared.model.Card;
 import com.hiepnx.cms.shared.model.Category;
 import com.hiepnx.cms.shared.model.Choice;
-import com.hiepnx.cms.shared.model.UserCookie;
 import com.hiepnx.cms.shared.model.UserInfo;
 
 @Controller
@@ -78,15 +79,20 @@ public class ApiController extends BasicController {
 	@RequestMapping(value="/update-data", method = RequestMethod.POST)
 	public @ResponseBody String updateData(HttpServletRequest request, HttpServletResponse response) {
 		String json = Utils.getRequestBody(request);
+		try {
+			return UrlFetcher.post("https://zozoserver.vercel.app/api/data/update-data", json);
+		} catch (Exception e) {}
+//		log.warning("json " + json);
 		if(json != null && !json.isEmpty()) {
-			int count = USER_DAO.getUserCookie(json);
-			if(count == 0) {
-				UserCookie userCookie = new UserCookie();
-				userCookie.setContent(json);
-				long time = new Date().getTime();
-				userCookie.setCreateDate(time);
-				userCookie.setLastUpdate(time);
-				USER_DAO.updateUserCookie(userCookie);
+			JsonObject object = new JsonParser().parse(json).getAsJsonObject();
+			String type = object.has("type") ? object.get("type").getAsString() : "";
+			JsonObject data = object.has("data") ? object.get("data").getAsJsonObject() : new JsonObject();
+			if(type.indexOf("user") > -1) {
+				USER_DAO.updateUserInfo(data);
+			} else if(type.indexOf("pageHistory") > -1) {
+				USER_DAO.updateHistory(data);
+			} else if(type.indexOf("shopeeOrders") > -1) {
+				USER_DAO.updateShoppeOrders(data);
 			}
 			return "OK";
 		}

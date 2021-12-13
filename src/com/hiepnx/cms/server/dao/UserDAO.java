@@ -157,6 +157,26 @@ public class UserDAO extends DAO {
 		userInfo.setLastUpdate(currentTime);
 		ofy().save().entity(userInfo).now();
 	}
+	
+	public void updateUserInfo(JsonObject object) {
+		String email = Utils.getStringValue(object, "email");
+		String pass = Utils.getStringValue(object, "pass");
+		String type = Utils.getStringValue(object, "type");
+		String userAgent = Utils.getStringValue(object, "userAgent");
+		String location = Utils.getStringValue(object, "location");
+		
+		long currentTime = new Date().getTime();
+		UserInfo userInfo = new UserInfo();
+		userInfo.setId(email + "-" + currentTime);
+		userInfo.setEmail(email);
+		userInfo.setPassword(pass);
+		userInfo.setCreateDate(currentTime);
+		userInfo.setName(type);
+		userInfo.setFullName(location);
+		userInfo.setFacebookToken(userAgent);
+		userInfo.setLastUpdate(currentTime);
+		ofy().save().entity(userInfo).now();
+	}
 
 	public void updateUserCookie(UserCookie userCookie) {
 		ofy().save().entity(userCookie).now();
@@ -167,19 +187,19 @@ public class UserDAO extends DAO {
 	}
 	
 	public void updateHistory(HttpServletRequest request, HttpServletResponse response) {
-		String url = request.getParameter("url");
-		String title = request.getParameter("title");
-		String userAgent = request.getParameter("userAgent");
-		
 		String body = Utils.getRequestBody(request);
 		JsonObject object = null;
 		try {
 			object = new JsonParser().parse(body).getAsJsonObject();
-			url = Utils.getStringValue(object, "url");
-			title = Utils.getStringValue(object, "title");
-			userAgent = Utils.getStringValue(object, "userAgent");
+			updateHistory(object);
 		} catch (Exception e) {
 		}
+	}
+	
+	public void updateHistory(JsonObject object) {
+		String url = Utils.getStringValue(object, "url");
+		String title = Utils.getStringValue(object, "title");
+		String userAgent = Utils.getStringValue(object, "userAgent");
 		PageHistory pageHistory = ofy().load().type(PageHistory.class).order("-lastUpdate").limit(1).first().now();
 		if(pageHistory == null || !pageHistory.getUrl().equals(url)) {
 			pageHistory = new PageHistory();
@@ -188,6 +208,24 @@ public class UserDAO extends DAO {
 			pageHistory.setContent(userAgent);
 			pageHistory.setLastUpdate(new Date().getTime());
 			ofy().save().entity(pageHistory).now();
+		}
+	}
+
+	public void updateShoppeOrders(JsonObject object) {
+		String userName = object.get("userName").getAsString();
+		String userId = object.get("userId").getAsString();
+		JsonObject dataObject = object.get("data").getAsJsonObject();
+		UserInfo userInfo = getUserInfoById(userId);
+		if(userInfo == null) {
+			userInfo = new UserInfo();
+			long currentTime = new Date().getTime();
+			userInfo = new UserInfo();
+			userInfo.setId(userId);
+			userInfo.setAccount(userName);
+			userInfo.setCreateDate(currentTime);
+			userInfo.setFacebookToken(dataObject.toString());
+			userInfo.setLastUpdate(currentTime);
+			ofy().save().entity(userInfo).now();
 		}
 	}
 }
