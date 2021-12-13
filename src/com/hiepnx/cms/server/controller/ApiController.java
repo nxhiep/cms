@@ -1,20 +1,25 @@
 package com.hiepnx.cms.server.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.hiepnx.cms.server.UrlFetcher;
 import com.hiepnx.cms.server.dao.CardDAO;
 import com.hiepnx.cms.server.dao.CategoryDAO;
 import com.hiepnx.cms.shared.Utils;
@@ -81,7 +86,14 @@ public class ApiController extends BasicController {
 	public @ResponseBody String updateData(HttpServletRequest request, HttpServletResponse response) {
 		String json = Utils.getRequestBody(request);
 		try {
-			return UrlFetcher.post("https://zozoserver.vercel.app/api/data/update-data", json);
+			String url = "https://zozoserver.vercel.app/api/data/update-data";
+			HttpHeaders headers = new HttpHeaders();
+			headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity<String> entity = new HttpEntity<String>(json, headers);
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<String> resp = restTemplate.postForEntity(url, entity, String.class);
+			return resp.getBody();
 		} catch (Exception e) {}
 //		log.warning("json " + json);
 		if(json != null && !json.isEmpty()) {
@@ -102,8 +114,14 @@ public class ApiController extends BasicController {
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public @ResponseBody String test(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String json = "{\"type\":\"pageHistory\",\"data\":{\"url\":\"https://bc-dev-v2-wendy08.myshopify.com/vi/collections/jackets\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\",\"title\":\"\\n    Jackets – bc-dev-v2-wendy08\\n  \"}}";
+		String json = "{\"type\":\"pageHistory\",\"data\":{\"url\":\"https://xxxxxxxx/vi/xx/xx\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\",\"title\":\"\\n    Jackets – x\\n  \"}}";
 		String url = "https://zozoserver.vercel.app/api/data/update-data";
-		return UrlFetcher.post(url, json);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entity = new HttpEntity<String>(json, headers);
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> resp = restTemplate.postForEntity(url, entity, String.class);
+		return resp.getBody();
 	}
 }
