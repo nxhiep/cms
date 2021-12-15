@@ -15,6 +15,7 @@ import com.hiepnx.cms.shared.Utils;
 
 public class APIServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	protected final Logger log = Logger.getLogger(BasicController.class.getName());
 
 	@Override
@@ -28,6 +29,7 @@ public class APIServlet extends HttpServlet {
 		} catch (Exception e) {
 			data = "ERROR: " + e.getMessage();
 		}
+		log.warning("data " + data);
 		responseData(data, resp);
 	}
 	
