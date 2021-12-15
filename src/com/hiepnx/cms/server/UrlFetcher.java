@@ -1,9 +1,11 @@
 package com.hiepnx.cms.server;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -40,6 +42,28 @@ public class UrlFetcher {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	public static String post2(String urlStr, String urlParameters) throws IOException {
+		URL obj = new URL(urlStr);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("POST");
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+		con.setReadTimeout(60000);
+		con.setRequestProperty("Content-Type", "application/json");
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+		return response.toString();
 	}
 
 	public static String onPostData(String url, String payload) throws UnsupportedEncodingException {

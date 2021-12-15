@@ -16,6 +16,16 @@
     <url-pattern>/cms/api</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>APIServlet</servlet-name>
+    <servlet-class>com.hiepnx.cms.server.servlet.APIServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>APIServlet</servlet-name>
+    <url-pattern>/api/update-data</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>FileUploadServlet</servlet-name>
     <servlet-class>com.hiepnx.cms.server.upload.FileUploadServlet</servlet-class>
